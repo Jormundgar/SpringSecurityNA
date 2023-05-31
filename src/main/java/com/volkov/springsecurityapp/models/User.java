@@ -35,6 +35,9 @@ public class User {
     @ToString.Exclude
     private String password;
 
+    @Column(name = "role")
+    private String role;
+
     public User(String username, int yearOfBirth) {
         this.username = username;
         this.yearOfBirth = yearOfBirth;
