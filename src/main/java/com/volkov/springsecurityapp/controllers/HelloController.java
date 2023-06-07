@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @AllArgsConstructor(onConstructor = @__(@Autowired))
@@ -21,11 +22,11 @@ public class HelloController {
     }
 
     @GetMapping("/userInfo")
+    @ResponseBody
     public String showUserInfo() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
         var usersDetails = (UsersDetails) authentication.getPrincipal();
-        System.out.println(usersDetails.getUser());
-        return "hello";
+        return usersDetails.getUsername();
     }
 
     @GetMapping("/admin")
